@@ -1,0 +1,432 @@
+/* =========================================
+   1. COLORES Y CONFIGURACIÓN BÁSICA
+   ========================================= */
+:root {
+    --color-principal: #10521c; /* Verde fervenza */
+    --color-acento: #496ea5;    /* Rojo fuerte para destacar (botones) */
+    --color-fondo: #F8FAFC;     /* Gris muy clarito para el fondo */
+    --color-texto: #333333;
+    --blanco: white;
+    --color-fondo-tarjeta: #e5ffdc;
+    --color-fondo-cabecera: #e5ffdc;    
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;800;900&display=swap');
+
+
+body {
+    font-family:"Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 500;
+}
+
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+    min-height: 100vh;
+  
+}
+
+/* =========================================
+   2. CABECERA Y MENÚ (FLEXBOX)
+   ========================================= */
+.cabecera-principal {
+    background-color: var(--color-fondo);
+    display: flex;
+    justify-content: space-between; /* Separa el logo a la izq y menú a la der */
+    align-items: center;
+    padding: 15px 5%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    
+    /* Magia para que el menú persiga al usuario al bajar */
+    position: sticky; 
+    top: 0;
+    z-index: 1000;
+}
+
+.logo h1 {
+    color: var(--color-principal);
+    font-size: 1.5rem;
+}
+
+.menu-principal ul {
+    display: flex;
+    list-style: none;
+    gap: 25px; /* Separación entre los enlaces */
+    align-items: center;
+}
+
+#contenedor-menu {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.menu-principal a {
+    text-decoration: none;
+    color: var(--color-principal);
+    font-weight: bold;
+    transition: color 0.3s ease; /* Efecto suave al pasar el ratón */
+}
+
+.menu-principal a:hover {
+    color: var(--color-acento);
+}
+
+.logo a:hover {
+    color: var(--color-acento);
+}
+
+.btn-destacado {
+    background-color: var(--color-acento);
+    color: var(--blanco) !important;
+    padding: 8px 18px;
+    border-radius: 5px;
+}
+
+.btn-destacado:hover {
+    background-color: #c53030; /* Un rojo más oscuro al pasar el ratón */
+}
+
+/* =========================================
+   3. SECCIÓN DESTACADA (HERO)
+   ========================================= */
+.hero {
+    background: 
+        /* 1. Capa superior: Degradado de verde oscuro a negro (0.85 es la opacidad) */
+        linear-gradient(
+            rgba(20, 50, 30, 0.8), /* Verde muy oscuro arriba */
+            rgba(1, 51, 0, 0.95)     /* Casi negro abajo del todo */
+        ),
+        /* 2. Capa inferior: La foto */
+        url('pezas/fondo.jpg');
+
+    /* Ajustes para que la foto se vea perfecta */
+    background-size: cover;       /* Ocupa todo el espacio sin deformarse */
+    background-position:center 50%;  /* Centra la parte más importante de la foto */
+    background-attachment: fixed; /* Opcional: Hace el efecto parallax (la foto se queda quieta al bajar) */
+    
+    /* Ajustes de forma del contenedor */
+    padding: 120px 20px;
+    text-align: center;
+    color: var(--blanco); /* Letras blancas obligatorias para que se lean */
+    border-radius: 0 0 15px 15px;
+
+/*importo montserrat que es la fuente de organizate e loita*/
+    color: var(--blanco);
+    text-align: center;
+    padding: 80px 20px;
+}
+
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+    /* Crea un resplandor difuminado alrededor y sobre las letras */
+   
+}
+#aqui {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 600 !important;
+}
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin: 0 auto 30px auto; /* Centra el párrafo */
+}
+
+.btn-principal {
+    background-color: var(--blanco);
+    color: var(--color-principal);
+    text-decoration: none;
+    padding: 12px 25px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.btn-principal:hover {
+    background-color: #e2e8f0;
+}
+
+/* =========================================
+   4. ESTRUCTURA PRINCIPAL (GRID)
+   ========================================= */
+.contenedor-principal {
+    display: grid;
+    /* Divide la pantalla: 2 partes para noticias, 1 parte para barra lateral */
+    grid-template-columns: 1fr; 
+    gap: 40px;
+    max-width: 1300px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+/* Diseño de las tarjetas blancas */
+.tarjeta-noticia {
+    background-color: var(--blanco);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden; /* Para que la foto respete los bordes redondeados */
+}
+
+-caja-enlaces {
+    padding: 20px;
+    background-color: var(--blanco);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    overflow: hidden;  
+}
+
+.tarjeta-noticia h3, .caja-enlaces h3 {
+    color: var(--color-principal);
+    margin-bottom: 15px;
+}
+
+.caja-enlaces ul {
+    list-style: none;
+}
+
+.caja-enlaces li {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.caja-enlaces a {
+    text-decoration: none;
+    color: var(--color-texto);
+    font-weight: bold;
+}
+
+.caja-enlaces a:hover {
+    color: var(--color-acento);
+}
+
+/* =========================================
+   5. PIE DE PÁGINA
+   ========================================= */
+.pie-pagina {
+    background-color: #1a202c;
+    color: #a0aec0;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+}
+
+/* =========================================
+   6. MÓVILES (¡Aquí está la magia de adaptarse!)
+   ========================================= */
+@media (max-width: 768px) {
+    
+    /* Cabecera: Apila el logo y el menú uno debajo del otro */
+    .cabecera-principal {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        border-radius: 0 0 15px 15px;
+        font-size: 0.8rem; /* Ajusta el tamaño de fuente para móviles */
+       
+    }
+
+    /* Menú: Pone los enlaces en forma de columna (uno debajo de otro) 
+    .menu-principal ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }*/
+
+    /* Cambia la estructura Grid a 1 sola columna.
+       Así la barra lateral cae abajo del todo y no se aplasta. */
+    .contenedor-principal {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero {
+        padding: 50px 20px;
+    }
+    
+    .hero h2 {
+        font-size: 2rem;
+    }
+}
+
+
+/* =========================================
+   ANIMACIÓN DE CARGA UNIVERSAL
+   ========================================= */
+.caja-cargando {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    width: 100%;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    /* Un borde gris muy clarito de fondo */
+    border: 5px solid #e2e8f0; 
+    /* El borde de arriba lleva tu color rojo de acento para que destaque */
+    border-top: 5px solid #a1a5ac ; 
+    border-radius: 50%; /* Esto lo hace redondo */
+    /* La magia: le decimos que gire infinitamente */
+    animation: girar 1s linear infinite; 
+    margin-bottom: 15px;
+}
+
+.caja-cargando p {
+    color: var(--color-principal);
+    font-weight: bold;
+    /* Un pequeño efecto de parpadeo suave para el texto */
+    animation: latido 1.5s infinite ease-in-out; 
+}
+
+/* Los "Keyframes" son las instrucciones de movimiento */
+@keyframes girar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes latido {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+
+
+.tarjeta-noticia:hover {
+    transform: translateY(-8px);
+    cursor: pointer; 
+    transition: transform 0.3s ease;
+}
+
+.enlace-tarjeta-entera1 {
+    text-decoration: none; /* Quita el subrayado */
+    color: inherit; /* Respeta los colores que ya teníamos (título azul, fecha gris) */
+    display: block; /* Hace que el enlace ocupe todo el espacio de la tarjeta */
+    height: 100%;
+    background-color: var(--color-fondo-tarjeta);
+}
+
+.contido-noticia {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
+    align-items: center;
+}
+.contido-texto{
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+}
+.contenedor-imaxe img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    align-items: center;
+    border-radius: 8px;
+}
+.contenedor-imaxe {
+    height: 100%;
+    margin: 0;
+    align-items: center;
+}
+
+.contido-noticia p {
+    margin: 0;
+}
+
+
+.data-publicacion {
+    font-size: 0.9rem;
+    padding-bottom: 10px;
+}
+
+.seccion-noticias h2 {
+    padding-bottom: 50px;
+    font-size: 2rem;
+}
+
+.contenedor-imagen {
+    overflow: hidden;
+}
+
+/* --- OCULTAR IMAGEN EN MÓVIL (Responsive) --- 
+
+/* Cuando la pantalla sea MÁS ESTRECHA que 768px... */
+@media (max-width: 2px) {
+    /* Ocultamos el contenedor de la imagen */
+    .contenedor-imaxe {
+        display: none !important; /* !important por si acaso tus otros estilos tienen mucha fuerza */
+    }
+
+    /* Y le decimos al texto que ocupe todo el ancho de la tarjeta */
+    .contido-noticia {
+        grid-template-columns: 1fr !important; /* Cambiamos el grid de 2 columnas a 1 */
+    }
+}
+
+/* Cuando la pantalla sea más estrecha que 768px, pasa a diseño vertical */
+@media (max-width: 900px) {
+    .contido-noticia {
+        /* Cambiamos el grid de 2 columnas a 1 sola columna */
+        grid-template-columns: 1fr !important;
+        
+        /* Opcional: si quieres que la imagen quede arriba y el texto abajo (por defecto ya se ordenan según el HTML) */
+    }
+
+    /* Opcional: si quieres darle una altura fija o máxima a la imagen en móvil 
+       para que no ocupe media pantalla de alto */
+    .contenedor-imaxe {
+        height: 200px !important; /* Ajusta los píxeles a tu gusto para el móvil */
+    }
+
+    .contenedor-imaxe img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+
+
+
+
+
+
+          .logo-img {
+    height: 40px;          /* Altura fija ideal para que encaje en una barra de navegación */
+    width: auto;           /* Ancho automático para que mantenga sus proporciones originales */
+    display: block;
+    transition: opacity 0.2s ease;
+}
+
+.logo-img:hover {
+    opacity: 0.85;
+}
+
+/* Adaptación para móviles por si en pantallas pequeñas se ve muy apretado */
+@media (max-width: 600px) {
+    .logo-img {
+        height: 32px; /* Un poco más pequeño en móviles */
+    }
+}
+  

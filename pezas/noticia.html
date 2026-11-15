@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunicado - Sindicato S.I.T.</title>
+    <link rel="stylesheet" href="../estilos_xerais.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Unos pequeños ajustes extra para que el artículo grande se vea bonito */
+        .articulo-completo { background: white; padding: 40px; border-radius: 8px; max-width: 800px; margin: 0 auto; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .articulo-completo h2 { color: var(--color-principal); font-size: 2.5rem; margin-bottom: 10px; }
+        .articulo-completo .fecha { color: #666; margin-bottom: 30px; font-style: italic; }
+        .articulo-completo p { font-size: 1.1rem; margin-bottom: 20px; line-height: 1.8; }
+        .galeria-articulo { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px; }
+        .galeria-articulo img { width: 100%; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .btn-volver { display: inline-block; margin-bottom: 20px; color: var(--color-principal); text-decoration: none; font-weight: bold; }
+        .btn-volver:hover { color: var(--color-acento); }
+    </style>
+</head>
+<body>
+
+    <!-- Hueco para el menú común -->
+    <div id="contenedor-menu"></div>
+
+    <!-- CONTENEDOR DEL ARTÍCULO -->
+    <main class="contenedor-principal" style="display: block;">
+        <a href="javascript:history.back()" class="btn-volver">← Voltar</a>
+        
+        <div id="caja-articulo">
+               <div class="caja-cargando">
+    <div class="spinner"></div>
+</div>
+        </div>
+    </main>
+
+    <!-- MOTOR JAVASCRIPT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script>
+        // 1. Extraemos el ID de la barra de direcciones (ej: noticia.html?id=2)
+        const parametrosURL = new URLSearchParams(window.location.search);
+        const idBuscado = parametrosURL.get('id');
+
+        // Tu enlace de Google Sheets
+        // Le añadimos el truco de los milisegundos para forzar a Google a darte el dato fresco
+const enlaceExcel = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRV68SLA6ujZ0jgGkiknu16IUsFDcZtter5q1ZGy-8MLMckzSi76WrQMI0Yv_sYOLe5svMvrFLbk7o4/pub?output=csv" + "&t=" + Date.now();
+
+        // 2. Si alguien entra a noticia.html sin un ID, le avisamos
+        if (!idBuscado) {
+            document.getElementById("caja-articulo").innerHTML = "<p> Error: Especifique unha noticia ou artigo para ler.</p>";
+        } else {
+            // 3. Conectamos al Excel
+            Papa.parse(enlaceExcel, {
+                download: true,
+                header: true,
+                complete: function(resultados) {
+                    let todasLasNoticias = resultados.data;
+
+                    // 4. Buscamos EXACTAMENTE la fila que tenga el ID que buscamos
+                    // Usamos '==' en lugar de '===' para que ignore si es texto o número, 
+// y le ponemos .trim() por si se coló algún espacio en el Excel
+let noticiaEncontrada = todasLasNoticias.find(noticia => noticia.ID && noticia.ID.trim() == idBuscado);
+
+                    let cajaArticulo = document.getElementById("caja-articulo");
+
+                    if (noticiaEncontrada) {
+                        // Respetamos los saltos de línea del Excel cambiando los 'enter' invisibles por <br>
+                        let textoFormateado = noticiaEncontrada.Texto ? noticiaEncontrada.Texto.replace(/\n/g, '<br>') : "";
+
+                        // Preparamos las fotos (por si tienes 1, 2, 3 o ninguna)
+                        let fotosHTML = "";
+                        if(noticiaEncontrada.Imagen) fotosHTML += `<img src="${noticiaEncontrada.Imagen}">`;
+                        if(noticiaEncontrada.Imagen2) fotosHTML += `<img src="${noticiaEncontrada.Imagen2}">`;
+                        if(noticiaEncontrada.Imagen3) fotosHTML += `<img src="${noticiaEncontrada.Imagen3}">`;
+
+                        // Dibujamos el artículo final
+                        cajaArticulo.innerHTML = `
+                            <article class="articulo-completo">
+                                <h2>${noticiaEncontrada.Titulo}</h2>
+                                <p class="fecha">Publicado o: ${noticiaEncontrada.Fecha}</p>
+                                <div class="contenido-texto">
+                                    <p>${textoFormateado}</p>
+                                </div>
+                                <div class="galeria-articulo">
+                                    ${fotosHTML}
+                                </div>
+                            </article>
+                        `;
+                    } else {
+                        cajaArticulo.innerHTML = "<p> Sentímolo, comunicado non atopado, é posible que xa non exista.</p>";
+                    }
+                }
+            });
+        }
+    </script>
+    <script src="../scripts/xeral.js"></script>
+</body>
+</html>

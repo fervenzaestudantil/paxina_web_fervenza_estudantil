@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fervenza</title>
+    
+    <!-- Estilos xerais -->
+    <link rel="stylesheet" href="estilos_xerais.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- (Opcional) Fuente tipográfica limpia de Google Fonts para darle un toque profesional -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Hueco para el menú común -->
+    <div id="contenedor-menu"></div>
+
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenedor-principal">
+        <div class="cabecera-seccion" style="text-align: center; margin-bottom: 40px;">
+            <h2 style="color: var(--color-principal); font-size: 2.2rem;">Todas as nosas publicacións</h2>
+            <p>Nesta sección podes acceder ás noticias e artigos de opinión. Se che interea, tamén podes consultar
+                o noso <a href="voceiro.html" style="color: var(--color-acento); text-decoration: underline;">voceiro</a> e descargar as últimas edicións.</p>
+            </p>
+        </div>
+        
+        <!-- SECCIÓN DE NOTICIAS (Aquí actuará tu JavaScript después) -->
+        <div id="contenedor-principal-noticias" class="grid-noticias">
+            <div class="caja-cargando">
+                <div class="spinner"></div>
+            </div>
+        </div>
+        <!-- BARRA LATERAL (Enlaces rápidos) -->
+        <div id="barra-lateral">
+        </div>
+
+    </main>
+
+
+
+    <!-- PIE DE PÁGINA -->
+    <div id="contenedor-footer"></div>
+
+  
+  
+    <!--Cargamos los scripts que utiliza la pagina -->
+    
+        <script src="scripts/xeral.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+        <script src="scripts/publicacions.js"></script>
+</body>
+
+
+
+
+</html>

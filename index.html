@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fervenza</title>
+    <link rel="stylesheet" href="estilos-voceiro.css">
+    <!-- Estilos xerais -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos_xerais.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- (Opcional) Fuente tipográfica limpia de Google Fonts para darle un toque profesional -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Hueco para el menú común -->
+    <div id="contenedor-menu"></div>
+
+    <!-- SECCIÓN DESTACADA (HERO) -->
+    <section class="hero">
+        <div class="hero-contenido">
+            <h2 id="aqui">ORGANÍZATE E LOITA!</h2>
+            <p><i>Se Galiza fose o país dos mil ríos, nós quixeramos ser a súa máis alta Fervenza.</i></p>
+            <a href="contacto.html" class="btn-principal">Milita</a>
+        </div>
+        </section>
+
+    <!-- CONTENIDO PRINCIPAL (Todo lo que va entre el menú y el footer) -->
+    <main class="contenedor-principal">
+        <div class="seccion-introduccion">
+            <p style="text-align: justify;">Fervenza é un sindicato estudantil combativo que busca revertir a historia do sindicalismo galego situándose na vangarda revolucionaria do movemento estudantil. </p>
+            <br>
+            <p style="text-align: justify;">Ante unha situación de desmotivación na loita polos nosos dereitos, de falta de mobilización por parte da mocidade estudantil, dende Fervenza entendemos a cooperatividade e a unión como a principal fonte de forza colectiva. O xermolo da nosa loita comeza na horizontalidade, na  unión e nas asembleas, nun debate onde todas nos poidamos sentir escoitadas  e teñamos poder de decisión. O noso carácter combativo lévanos tamén á actuación aguerrida, a única forma de acadar os nosos obxectivos con éxito.</p>
+            <img src="pezas/paremmos_historia_blur.png" alt="Fotografía dun piquete diante da facultade de historia" style="width: 100%; max-width: 600px; display: block; margin: 20px auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        </div>
+
+
+        <!-- SECCIÓN DE NOTICIAS -->
+        <section id="noticias" class="seccion-noticias">
+            <h2>Últimas publicacións</h2>
+            
+            <!-- Único contenedor donde JavaScript inyectará las noticias -->
+            <div id="contenedor-noticias" class="grid-noticias">
+                <div class="caja-cargando">
+                    <div class="spinner"></div>
+                </div>
+               
+            </div>
+        </section>
+        <div class="seccion-leer-mas">
+            <p>Buscas comunicados anteriores ou novas máis antigas?</p>
+            <a href="publicacions.html" class="btn-secundario">Ver todas as publicacións</a>
+        </div>
+        <style>
+            .seccion-introduccion {
+                
+                background-color: #e4ffdc;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            }
+                 .seccion-leer-mas {
+                text-align: center;
+                margin-top: 10px;
+                padding: 10px;
+                background-color: #F8FAFC; /* El gris suave de tu paleta */
+                border-radius: 8px;
+                border: 1px solid #E2E8F0; /* Un borde sutil muy elegante */
+            }
+
+            .seccion-leer-mas p {
+                margin: 0 0 15px 0;
+                color: #1E293B; /* Tu color oscuro principal */
+                font-size: 1.05rem;
+            }
+
+            /* Estilo para el botón de leer más */
+            .btn-secundario {
+                display: inline-block;
+                background-color: var(--color-acento); /* Tu azul eléctrico */
+                color: white;
+                padding: 10px 20px;
+                border-radius: 6px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: background-color 0.2s ease, transform 0.2s ease;
+            }
+
+            .btn-secundario:hover {
+                background-color: #0369a1; /* Un azul un poco más oscuro al pasar el ratón */
+                transform: translateY(-2px);
+}
+        </style>
+        <div id="contenedor-revistas" class="grid-revistas">
+            <!-- Animación de carga -->
+            <div class="caja-cargando">
+                <div class="spinner"></div>
+               
+            </div>
+        </div>
+         <div class="seccion-leer-mas">
+            <p>Queres coñecer todas as edicións do noso voceiro?</p>
+            <a href="voceiro.html" class="btn-secundario">Consultar todas as edicións</a>
+        </div>
+        <!-- BARRA LATERAL xa non e lateral pero bueno saludos non penso cambiar o tag -->
+        <aside id="barra-lateral">
+            <!-- Tu contenido de la barra lateral aquí -->
+        </aside>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <div id="contenedor-footer"></div>
+
+
+
+        <!-- 1. Cargamos el motor de PapaParse -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+<script src="scripts/voceiroprevia.js"></script> <!-- Aquí asumimos que tienes el cargador del menú y footer -->
+<!-- 2. Nuestro código personalizado -->
+<script>  // Previsualizacion de las ultimas 3 noticias 
+    // Tu enlace largo del Excel (terminado en pub?output=csv)
+    const enlaceExcel = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRV68SLA6ujZ0jgGkiknu16IUsFDcZtter5q1ZGy-8MLMckzSi76WrQMI0Yv_sYOLe5svMvrFLbk7o4/pub?output=csv";
+
+    Papa.parse(enlaceExcel, {
+        download: true,
+        header: true,
+        complete: function(resultados) {
+            
+            let todasLasNoticias = resultados.data;
+
+            // 1. Limpiamos filas vacías por si dejaste algún hueco en el Excel
+            let noticiasValidas = todasLasNoticias.filter(noticia => noticia.Titulo && noticia.Titulo.trim() !== "");
+
+            // 2. Le damos la vuelta para que las de abajo del Excel (las más nuevas) salgan primero
+            let noticiasNuevas = noticiasValidas.reverse();
+
+            // 3. Cortamos la lista para quedarnos SOLO con las 3 primeras (Ideal para la portada)
+            let ultimasTres = noticiasNuevas.slice(0, 2);
+
+            let cajaPrincipal = document.getElementById("contenedor-noticias");
+            let contenidoHTML = "";
+
+            // 4. Debuxamos o html por noticia 
+            ultimasTres.forEach(function(noticia) {
+                
+                // Resumo do texto orixinal para a tarxeta 
+                let textoResumen = noticia.Texto.substring(0, 420) + "...";
+
+                contenidoHTML += `
+                    <article class="tarjeta-noticia">
+                        <a href="pezas/noticia.html?id=${noticia.ID}" class="enlace-tarjeta-entera1">
+                        
+                        <div class="contido-noticia">
+                            <div class="contenedor-imaxe">
+                                <img src="${noticia.Imagen}" alt="Imagen da noticia">
+                            </div>
+                            <div class="contido-texto">
+                                <h3>${noticia.Titulo}</h3>
+                                <i><p class="data-publicacion">Publicado o: ${noticia.Fecha}</p></i>
+                                <p>${textoResumen}</p>
+                            </div>    
+                        </div>
+                        <!-- MAGIA: El botón apunta a noticia.html pasándole el ID exacto -->
+                        
+                        </a>
+                    </article>
+                `;
+            });
+
+           //metemos as caixas reales de noticias yea
+            cajaPrincipal.innerHTML = contenidoHTML;
+        }
+    });
+</script>
+
+
+
+<script src="scripts/xeral.js"></script>
+</body>
+</html>
+

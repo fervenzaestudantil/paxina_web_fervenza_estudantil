@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fervenza</title>
+    
+    <!-- Estilos xerais -->
+    <link rel="stylesheet" href="estilos_xerais.css">
+     <link rel="stylesheet" href="estilos-voceiro.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- (Opcional) Fuente tipográfica limpia de Google Fonts para darle un toque profesional -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Hueco para el menú común -->
+    <div id="contenedor-menu"></div>
+
+
+    <main class="contenedor-principal" style="display: block;">
+        
+        <div class="cabecera-seccion" style="text-align: center; margin-bottom: 40px;">
+            <h2 style="color: var(--color-principal); font-size: 2.2rem;">Todas as edicións</h2>
+            <p>Descarga as últimas edicións en versión dixital do noso voceiro mensual "O PIQUETE". Para obter a versión impresa contacta con nós.</p>
+        </div>
+        
+        <!-- La cuadrícula de 3 columnas -->
+        <div id="contenedor-revistas" class="grid-revistas">
+            <!-- Animación de carga -->
+            <div class="caja-cargando">
+                <div class="spinner"></div>
+               
+            </div>
+        </div>
+
+    </main>
+
+    <!-- El pie de página inyectado por JS -->
+    <div id="contenedor-footer"></div>
+
+    <!-- Cargamos PapaParse y nuestros scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="menu.js"></script> <!-- Aquí asumimos que tienes el cargador del menú y footer -->
+    
+    <!-- El script específico de las revistas -->
+   <script src="scripts/voceiro.js"></script>
+    <script src="scripts/xeral.js"></script>
+</body>
+</html>
