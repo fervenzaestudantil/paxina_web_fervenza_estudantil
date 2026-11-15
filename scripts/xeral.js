@@ -1,14 +1,14 @@
 
 
 //solucion para problema de rutas relativas en localhost y en servidor
-let RUTA_BASE = "";
-if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-    RUTA_BASE = "/"; 
-} else {
-    RUTA_BASE = "/paxina_fervenza/"; 
-}
+//let RUTA_BASE = "";
+//if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+   // RUTA_BASE = "/"; 
+//} else {
+  //  RUTA_BASE = "/paxina_fervenza/"; 
+//}
 
-
+let RUTA_BASE = "/"
 //Neste .js poñemos codigos que usan todas as páxinas da web. Noutros casos é mellor diferenciar
 // para qe as paxinas non carguen código que non usan.  
 
